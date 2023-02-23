@@ -11,7 +11,7 @@ let CityLocation = ['Seattle','Tokyo','Dubai','Paris', 'Lima'];
 
 // object literals 
 
-let htmlSection = document.getElementById ('Locations');
+let htmlSection = document.getElementById ('salesdata');
 console.log(htmlSection);
 let Seattle = {
   minCust: 23,
@@ -22,13 +22,13 @@ let Seattle = {
   cookieBought:[],
   dailyTotal: 0,
 
-   //The function uses a for loop to iterate over each hour in an array called this.hours. 
-   //For each hour, the function generates a random number of customers using another function called randomNum
-   //which takes two arguments: this.minCust (the minimum number of customers expected per hour) and this.maxCust (the maximum number of customers expected per hour).
+  //The function uses a for loop to iterate over each hour in an array called this.hours. 
+  //For each hour, the function generates a random number of customers using another function called randomNum
+  //which takes two arguments: this.minCust (the minimum number of customers expected per hour) and this.maxCust (the maximum number of customers expected per hour).
   // The random number of customers generated for each hour is then pushed to an array called this.custperHour,
   //which will ultimately hold the total number of customers expected to visit the business during each hour of operation.
   getCustomers: function (){
-    for (let i =0; i < this.hours.length; i++){
+    for (let i =0; i < hours.length; i++){
       this.custperHour.push (randomNum (this.minCust,this.maxCust));
     }
   },
@@ -41,7 +41,7 @@ let Seattle = {
     for (let i =0; i <hours.length; i++){
       this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
     }
-  }
+  },
 
   //For each hour, the function adds the corresponding hourly sales (which are stored in the hourlySales array) to a running total called dailyTotal.
   // By the end of the loop, dailyTotal will contain the total number of cookies expected to be sold over the entire day.
@@ -55,25 +55,43 @@ let Seattle = {
     this.getCustomers ();
     this.gethourlySale ();
     this.getcookiesTotal ();
+
+    let articleElm = document.createElement ('article');
+    htmlSection.appendChild(articleElm);
+  
+    let h3Elem =document.createElement('h3');
+    h3Elem.textContent = this.name;
+    articleElm.appendChild(h3Elem);
+
+    let ulElem = document.createElement ('ul');
+    console.log (ulElem);
+    console.log (htmlSection);
+    articleElm.appendChild(ulElem);
+
+    for (let i =0; i <hours.length;i++){
+      let li = document.createElement ("li");
+      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      ulElem.appendChild (li);
+    }
+
+    let li = document.createElement ('li');
+    li.textContent =`Total ${this.dailyTotal}`;
+    ulElem.appendChild (li);
   }
 }
+function randomNum (min, max) {
+  return Math.random() * (max - min) + min;
+}
+Seattle.render()
 
 // The first line creates a new HTML element called "article" using the createElement 
-let articleElm = document.createElement ('article');
-htmlSection.appendChild(articleElm);
 
 // h 3 goes here, I will create it
-let h3Elm =document.createElement('h3');
-h3Elem.textContent = this.name;
-articleElm.appendChild(h3Elem);
+
 
 //display the values of each array
 
-let ulElem = document.createElement ('ul');
-console.log (ulElem);
-console.log (htmlSection);
-articleElm.appendChild(ulElem);
-// li
+
 
 // For each hour, the code creates a new HTML element called li. 
 // The code then sets the textContent property of the li element to a string that contains information about the hour and the corresponding sales data
@@ -82,77 +100,67 @@ articleElm.appendChild(ulElem);
 //The first value is the hour of operation, which is obtained from the hours array using the current index of the loop (hours[i]).
 //The second value is the corresponding number of cookies sold during that hour, which is obtained from the hourlySales array using the same index (this.hourlySales[i]).
 
-for (let i =0; i <hours.length;i++){
-  let li = document.createElement ("li");
-  li.textContent = `${hours [i]}`; ${this.hourlySales[i]}cookies;
-  ulElem.appendChild (li);
-}
 // creates a new list item element, sets its text content to include a total value, and then adds it as a child to an unordered list element.
 
-  let li = document.createElement ('li');
-  li.textContent =`Total ${this.dailyTotal}`;
-  ulElem.appendChild (li);
 
+let Paris = {
+  minCust: 20,
+  maxCust:38,
+  avgcookieSale: 2.3,
+  custperHour : [],
+  hourlySales: [],
+  cookieBought:[],
+  dailyTotal: 0,
 
-
-  let Paris = {
-    minCust: 20,
-    maxCust:38,
-    avgcookieSale: 2.3,
-    custperHour : [],
-    hourlySales: [],
-    cookieBought:[],
-    dailyTotal: 0,
-
-    getCustomers: function (){
-      for (let i =0; i < this.hours.length; i++){
-        this.custperHour.push (randomNum (this.minCust,this.maxCust));
-      }
-    },
-
-    gethourlySale: function (){
-      for (let i =0; i <hours.length; i++){
-        this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-      }
+  getCustomers: function (){
+    for (let i =0; i < hours.length; i++){
+      this.custperHour.push (randomNum (this.minCust,this.maxCust));
     }
-  
-    getcookiesTotal: function (){
-      for (let i = 0; i < hours.length;i++){
-        this.dailyTotal += this.hourlySales[i];
-      }
-    },
-    render: function (){
-      this.getCustomers ();
-      this.gethourlySale ();
-      this.getcookiesTotal ();
+  },
+  gethourlySale: function (){
+    for (let i =0; i <hours.length; i++){
+      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
     }
+  },
+
+
+  getcookiesTotal: function (){
+    for (let i = 0; i < hours.length;i++){
+      this.dailyTotal += this.hourlySales[i];
+    }
+  },
+  render: function (){
+    this.getCustomers ();
+    this.gethourlySale ();
+    this.getcookiesTotal ();
+
+    let articleElm = document.createElement ('article');
+    htmlSection.appendChild(articleElm);
+
+    let h3Elem =document.createElement('h3');
+    h3Elem.textContent = this.name;
+    articleElm.appendChild(h3Elem);
+
+    let ulElem = document.createElement ('ul');
+    console.log (ulElem);
+    console.log (htmlSection);
+    articleElm.appendChild(ulElem);
+
+    for (let i =0; i <hours.length;i++){
+      let li = document.createElement ("li");
+      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      ulElem.appendChild (li);
+    }
+
+    let li = document.createElement ('li');
+    li.textContent =`Total ${this.dailyTotal}`;
+    ulElem.appendChild (li);
   }
-  let articleElm = document.createElement ("article");
-  htmlSection.appendChild(articleElm);
-  // h 3 goes here, I will create it
-  
-  let h3Elm =document.createElement('h3');
-  h3Elem.textContent = this.name;
-  articleElm.appendChild(h3Elem);
-  
-  //displayed as ul
-  
-  let ulElem2 = document.createElement ('ul');
-  console.log (ulElem2);
-  console.log (htmlSection);
-  articleElm.appendChild(ulElem2);
-  // li
-  
-for (let i =0; i <hours.length;i++){
-  let li = document.createElement ("li");
-  li.textContent = `${hours [i]}`; ${this.hourlySales[i]}cookies;
-  ulElem2.appendChild (li);
 }
-  
-let li = document.createElement ('li');
-li.textContent =`Total ${this.dailyTotal}`;
-ulElem2.appendChild (li);
-
+function randomNum (min, max) {
+  return Math.random() * (max - min) + min;
+}
+Paris.render()
 
 let Tokyo = {
   minCust: 3,
@@ -164,16 +172,16 @@ let Tokyo = {
   dailyTotal: 0,
 
   getCustomers: function (){
-    for (let i =0; i < this.hours.length; i++){
+    for (let i =0; i < hours.length; i++){
       this.custperHour.push (randomNum (this.minCust,this.maxCust));
     }
   },
-
   gethourlySale: function (){
     for (let i =0; i <hours.length; i++){
       this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
     }
-  }
+  },
+
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
@@ -184,91 +192,36 @@ let Tokyo = {
     this.getCustomers ();
     this.gethourlySale ();
     this.getcookiesTotal ();
+
+    let articleElm = document.createElement ('article');
+    htmlSection.appendChild(articleElm);
+
+    let h3Elem =document.createElement('h3');
+    h3Elem.textContent = this.name;
+    articleElm.appendChild(h3Elem);
+
+    let ulElem = document.createElement ('ul');
+    console.log (ulElem);
+    console.log (htmlSection);
+    articleElm.appendChild(ulElem);
+
+    for (let i =0; i <hours.length;i++){
+      let li = document.createElement ("li");
+      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      ulElem.appendChild (li);
+    }
+
+    let li = document.createElement ('li');
+    li.textContent =`Total ${this.dailyTotal}`;
+    ulElem.appendChild (li);
   }
 }
-let articleElm = document.createElement ("article");
-htmlSection.appendChild(articleElm);
-// h 3 goes here, I will create it
-
-let h3Elm =document.createElement('h3');
-h3Elem.textContent = this.name;
-articleElm.appendChild(h3Elem);
-
-//displayed as ul
-
-let ulElem3 = document.createElement ('ul');
-console.log (ulElem3);
-console.log (htmlSection);
-articleElm.appendChild(ulElem3);
-// li
-
-for (let i =0; i <hours.length;i++){
-let li = document.createElement ("li");
-li.textContent = `${hours [i]}`; ${this.hourlySales[i]}cookies;
-ulElem3.appendChild (li);
+function randomNum (min, max) {
+  return Math.random() * (max - min) + min;
 }
+Tokyo.render()
 
-let li = document.createElement ('li');
-li.textContent =`Total ${this.dailyTotal}`;
-ulElem3.appendChild (li);
-
-let Dubai = {
-  minCust: 11,
-  maxCust:38,
-  avgcookieSale: 3.7,
-  custperHour : [],
-  hourlySales: [],
-  cookieBought:[],
-  dailyTotal: 0,
-
-  getCustomers: function (){
-    for (let i =0; i < this.hours.length; i++){
-      this.custperHour.push (randomNum (this.minCust,this.maxCust));
-    }
-  },
-
-  gethourlySale: function (){
-    for (let i =0; i <hours.length; i++){
-      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-    }
-  }
-
-  getcookiesTotal: function (){
-    for (let i = 0; i < hours.length;i++){
-      this.dailyTotal += this.hourlySales[i];
-    }
-  },
-  render: function (){
-    this.getCustomers ();
-    this.gethourlySale ();
-    this.getcookiesTotal ();
-  }
-}
-let articleElm = document.createElement ("article");
-htmlSection.appendChild(articleElm);
-// h 3 goes here, I will create it
-
-let h3Elm =document.createElement('h3');
-h3Elem.textContent = this.name;
-articleElm.appendChild(h3Elem);
-
-//displayed as ul
-
-let ulElem4 = document.createElement ('ul');
-console.log (ulElem4);
-console.log (htmlSection);
-articleElm.appendChild(ulElem4);
-
-for (let i =0; i <hours.length;i++){
-let li = document.createElement ("li");
-li.textContent = `${hours [i]}`; ${this.hourlySales[i]}cookies;
-ulElem4.appendChild (li);
-}
-
-let li = document.createElement ('li');
-li.textContent =`Total ${this.dailyTotal}`;
-ulElem4.appendChild (li);
-
+  
 let Lima = {
   minCust: 2,
   maxCust: 16,
@@ -279,16 +232,16 @@ let Lima = {
   dailyTotal: 0,
 
   getCustomers: function (){
-    for (let i =0; i < this.hours.length; i++){
+    for (let i =0; i < hours.length; i++){
       this.custperHour.push (randomNum (this.minCust,this.maxCust));
     }
   },
-
   gethourlySale: function (){
     for (let i =0; i <hours.length; i++){
       this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
     }
-  }
+  },
+
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
@@ -299,35 +252,95 @@ let Lima = {
     this.getCustomers ();
     this.gethourlySale ();
     this.getcookiesTotal ();
+
+    let articleElm = document.createElement ('article');
+    htmlSection.appendChild(articleElm);
+
+    let h3Elem =document.createElement('h3');
+    h3Elem.textContent = this.name;
+    articleElm.appendChild(h3Elem);
+
+    let ulElem = document.createElement ('ul');
+    console.log (ulElem);
+    console.log (htmlSection);
+    articleElm.appendChild(ulElem);
+
+    for (let i =0; i <hours.length;i++){
+      let li = document.createElement ("li");
+      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      ulElem.appendChild (li);
+    }
+
+    let li = document.createElement ('li');
+    li.textContent =`Total ${this.dailyTotal}`;
+    ulElem.appendChild (li);
   }
 }
-let articleElm = document.createElement ("article");
-htmlSection.appendChild(articleElm);
-// h 3 goes here, I will create it
-
-let h3Elm =document.createElement('h3');
-h3Elem.textContent = this.name;
-articleElm.appendChild(h3Elem);
-
-//displayed as ul
-
-let ulElem5 = document.createElement ('ul');
-console.log (ulElem5);
-console.log (htmlSection);
-articleElm.appendChild(ulElem5);
-// li
-
-for (let i =0; i <hours.length;i++){
-let li = document.createElement ("li");
-li.textContent = `${hours [i]}`; ${this.hourlySales[i]}cookies;
-ulElem5.appendChild (li);
+function randomNum (min, max) {
+  return Math.random() * (max - min) + min;
 }
-
-let li = document.createElement ('li');
-li.textContent =`Total ${this.dailyTotal}`;
-ulElem5.appendChild (li);
+Lima.render ()
 
 
+let Dubai= {
+  minCust: 11,
+  maxCust:38,
+  avgcookieSale: 3.7,
+  custperHour : [],
+  hourlySales: [],
+  cookieBought:[],
+  dailyTotal: 0,
+
+
+  getCustomers: function (){
+    for (let i =0; i < hours.length; i++){
+      this.custperHour.push (randomNum (this.minCust,this.maxCust));
+    }
+  },
+  gethourlySale: function (){
+    for (let i =0; i <hours.length; i++){
+      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
+    }
+  },
+
+  getcookiesTotal: function (){
+    for (let i = 0; i < hours.length;i++){
+      this.dailyTotal += this.hourlySales[i];
+    }
+  },
+  render: function (){
+    this.getCustomers ();
+    this.gethourlySale ();
+    this.getcookiesTotal ();
+
+    let articleElm = document.createElement ('article');
+    htmlSection.appendChild(articleElm);
+
+    let h3Elem =document.createElement('h3');
+    h3Elem.textContent = this.name;
+    articleElm.appendChild(h3Elem);
+
+    let ulElem = document.createElement ('ul');
+    console.log (ulElem);
+    console.log (htmlSection);
+    articleElm.appendChild(ulElem);
+
+    for (let i =0; i <hours.length;i++){
+      let li = document.createElement ("li");
+      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      ulElem.appendChild (li);
+    }
+  
+    let li = document.createElement ('li');
+    li.textContent =`Total ${this.dailyTotal}`;
+    ulElem.appendChild (li);
+  }
+}
+function randomNum (min, max) {
+  return Math.random() * (max - min) + min;
+}
+Dubai.render ()
+  
 
 
 
