@@ -13,6 +13,7 @@ let hours = ['6am', '7am', '8am','9pm','10am','11am','12pm','1pm','2pm', '3pm','
 let htmlSection = document.getElementById ('salesdata');
 console.log(htmlSection);
 let Seattle = {
+  city: 'Seattle',
   minCust: 23,
   maxCust:65,
   avgcookieSale: 6.3,
@@ -59,7 +60,7 @@ let Seattle = {
     htmlSection.appendChild(articleElm);
 
     let h3Elem =document.createElement('h3');
-    h3Elem.textContent = this.name;
+    h3Elem.textContent = this.city;
     articleElm.appendChild(h3Elem);
 
     let ulElem = document.createElement ('ul');
@@ -101,6 +102,7 @@ Seattle.render();
 
 
 let Paris = {
+  city:'Paris',
   minCust: 20,
   maxCust:38,
   avgcookieSale: 2.3,
@@ -135,7 +137,7 @@ let Paris = {
     htmlSection.appendChild(articleElm);
 
     let h3Elem =document.createElement('h3');
-    h3Elem.textContent = this.name;
+    h3Elem.textContent = this.city;
     articleElm.appendChild(h3Elem);
 
     let ulElem = document.createElement ('ul');
@@ -158,6 +160,7 @@ let Paris = {
 Paris.render();
 
 let Tokyo = {
+  city:'Tokyo',
   minCust: 3,
   maxCust: 24,
   avgcookieSale: 1.2,
@@ -192,7 +195,7 @@ let Tokyo = {
     htmlSection.appendChild(articleElm);
 
     let h3Elem =document.createElement('h3');
-    h3Elem.textContent = this.name;
+    h3Elem.textContent = this.city;
     articleElm.appendChild(h3Elem);
 
     let ulElem = document.createElement ('ul');
@@ -216,6 +219,7 @@ Tokyo.render();
 
   
 let Lima = {
+  city:'Lima',
   minCust: 2,
   maxCust: 16,
   avgcookieSale: 4.6,
@@ -250,7 +254,7 @@ let Lima = {
     htmlSection.appendChild(articleElm);
 
     let h3Elem =document.createElement('h3');
-    h3Elem.textContent = this.name;
+    h3Elem.textContent = this.city;
     articleElm.appendChild(h3Elem);
 
     let ulElem = document.createElement ('ul');
@@ -274,6 +278,7 @@ Lima.render ();
 
 
 let Dubai= {
+  city:'Dubai',
   minCust: 11,
   maxCust:38,
   avgcookieSale: 3.7,
@@ -308,7 +313,7 @@ let Dubai= {
     htmlSection.appendChild(articleElm);
 
     let h3Elem =document.createElement('h3');
-    h3Elem.textContent = this.name;
+    h3Elem.textContent = this.city;
     articleElm.appendChild(h3Elem);
 
     let ulElem = document.createElement ('ul');
