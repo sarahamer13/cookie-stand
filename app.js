@@ -58,7 +58,7 @@ let Seattle = {
 
     let articleElm = document.createElement ('article');
     htmlSection.appendChild(articleElm);
-  
+
     let h3Elem =document.createElement('h3');
     h3Elem.textContent = this.name;
     articleElm.appendChild(h3Elem);
@@ -78,11 +78,11 @@ let Seattle = {
     li.textContent =`Total ${this.dailyTotal}`;
     ulElem.appendChild (li);
   }
-}
+};
 function randomNum (min, max) {
   return Math.random() * (max - min) + min;
 }
-Seattle.render()
+Seattle.render();
 
 // The first line creates a new HTML element called "article" using the createElement 
 
@@ -156,11 +156,11 @@ let Paris = {
     li.textContent =`Total ${this.dailyTotal}`;
     ulElem.appendChild (li);
   }
-}
+};
 function randomNum (min, max) {
   return Math.random() * (max - min) + min;
 }
-Paris.render()
+Paris.render();
 
 let Tokyo = {
   minCust: 3,
@@ -215,11 +215,11 @@ let Tokyo = {
     li.textContent =`Total ${this.dailyTotal}`;
     ulElem.appendChild (li);
   }
-}
+};
 function randomNum (min, max) {
   return Math.random() * (max - min) + min;
 }
-Tokyo.render()
+Tokyo.render();
 
   
 let Lima = {
@@ -275,11 +275,11 @@ let Lima = {
     li.textContent =`Total ${this.dailyTotal}`;
     ulElem.appendChild (li);
   }
-}
+};
 function randomNum (min, max) {
   return Math.random() * (max - min) + min;
 }
-Lima.render ()
+Lima.render ();
 
 
 let Dubai= {
@@ -335,11 +335,11 @@ let Dubai= {
     li.textContent =`Total ${this.dailyTotal}`;
     ulElem.appendChild (li);
   }
-}
+};
 function randomNum (min, max) {
   return Math.random() * (max - min) + min;
 }
-Dubai.render ()
+Dubai.render ();
   
 
 
