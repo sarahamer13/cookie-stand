@@ -3,11 +3,11 @@
 // function to generate random number of customers per hour
 // function to getRandomCust(min,max){
 // return math.floor(math.random)() * (max- min)+ min )
- //   console.log (getRandomCust)
+//   console.log (getRandomCust)
 //} got this from MDN
 
 let hours = ['6am', '7am', '8am','9pm','10am','11am','12pm','1pm','2pm', '3pm','4pm', '5pm','6pm','7pm'];
-let CityLocation = ['Seattle','Tokyo','Dubai','Paris', 'Lima'];
+//let CityLocation = ['Seattle','Tokyo','Dubai','Paris', 'Lima'];
 
 // object literals 
 
