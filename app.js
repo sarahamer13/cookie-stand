@@ -1,9 +1,8 @@
 'use strict';
 
-// function to generate random number of customers per hour
-// function to getRandomCust(min,max){
-// return math.floor(math.random)() * (max- min)+ min )
-//   console.log (getRandomCust)
+function randomNum (min, max) {
+  return Math.random() * (max - min) + min;
+}
 //} got this from MDN
 
 let hours = ['6am', '7am', '8am','9pm','10am','11am','12pm','1pm','2pm', '3pm','4pm', '5pm','6pm','7pm'];
@@ -79,9 +78,7 @@ let Seattle = {
     ulElem.appendChild (li);
   }
 };
-function randomNum (min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 Seattle.render();
 
 // The first line creates a new HTML element called "article" using the createElement 
@@ -157,9 +154,7 @@ let Paris = {
     ulElem.appendChild (li);
   }
 };
-function randomNum (min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 Paris.render();
 
 let Tokyo = {
@@ -216,9 +211,7 @@ let Tokyo = {
     ulElem.appendChild (li);
   }
 };
-function randomNum (min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 Tokyo.render();
 
   
@@ -276,9 +269,7 @@ let Lima = {
     ulElem.appendChild (li);
   }
 };
-function randomNum (min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 Lima.render ();
 
 
@@ -330,17 +321,14 @@ let Dubai= {
       li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
       ulElem.appendChild (li);
     }
-  
+
     let li = document.createElement ('li');
     li.textContent =`Total ${this.dailyTotal}`;
     ulElem.appendChild (li);
   }
 };
-function randomNum (min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 Dubai.render ();
-  
 
 
 
