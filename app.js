@@ -1,7 +1,7 @@
 'use strict';
 
 function randomNum (min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 //} got this from MDN
 
@@ -29,7 +29,7 @@ let Seattle = {
   //which will ultimately hold the total number of customers expected to visit the business during each hour of operation.
   getCustomers: function (){
     for (let i =0; i < hours.length; i++){
-      this.custperHour.push (randomNum (this.minCust,this.maxCust));
+      this.custperHour.push (Math.floor (randomNum (this.minCust,this.maxCust)* this.avgcookieSale));
     }
   },
 // For each hour, the function calculates the hourly sales by multiplying the number of customers expected to visit during that hour 
@@ -37,23 +37,23 @@ let Seattle = {
 //This random number is used to simulate the fact that not all customers will necessarily make a purchase.
 //The result of this calculation is then pushed to an array called hourlySales, which will ultimately hold the total sales expected for each hour of operation.
 
-  gethourlySale: function (){
-    for (let i =0; i <hours.length; i++){
-      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-    }
-  },
+  // gethourlySale: function (){
+  //   for (let i =0; i <hours.length; i++){
+  //     this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
+  //   }
+  // },
 
   //For each hour, the function adds the corresponding hourly sales (which are stored in the hourlySales array) to a running total called dailyTotal.
   // By the end of the loop, dailyTotal will contain the total number of cookies expected to be sold over the entire day.
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
-      this.dailyTotal += this.hourlySales[i];
+      this.dailyTotal += this.custperHour[i];
     }
   },
   render: function (){
     this.getCustomers ();
-    this.gethourlySale ();
+    // this.gethourlySale ();
     this.getcookiesTotal ();
 
     let articleElm = document.createElement ('article');
@@ -70,7 +70,7 @@ let Seattle = {
 
     for (let i =0; i <hours.length;i++){
       let li = document.createElement ("li");
-      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      li.textContent = `${hours [i]}; ${this.custperHour[i]}cookies`;
       ulElem.appendChild (li);
     }
 
@@ -113,24 +113,24 @@ let Paris = {
 
   getCustomers: function (){
     for (let i =0; i < hours.length; i++){
-      this.custperHour.push (randomNum (this.minCust,this.maxCust));
+      this.custperHour.push (Math.floor (randomNum (this.minCust,this.maxCust)* this.avgcookieSale));
     }
   },
-  gethourlySale: function (){
-    for (let i =0; i <hours.length; i++){
-      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-    }
-  },
+  // gethourlySale: function (){
+  //   for (let i =0; i <hours.length; i++){
+  //     this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
+  //   }
+  // },
 
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
-      this.dailyTotal += this.hourlySales[i];
+      this.dailyTotal += this.custperHour[i];
     }
   },
   render: function (){
     this.getCustomers ();
-    this.gethourlySale ();
+    // this.gethourlySale ();
     this.getcookiesTotal ();
 
     let articleElm = document.createElement ('article');
@@ -147,7 +147,7 @@ let Paris = {
 
     for (let i =0; i <hours.length;i++){
       let li = document.createElement ("li");
-      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      li.textContent = `${hours [i]}; ${this.custperHour[i]}cookies`;
       ulElem.appendChild (li);
     }
 
@@ -171,24 +171,24 @@ let Tokyo = {
 
   getCustomers: function (){
     for (let i =0; i < hours.length; i++){
-      this.custperHour.push (randomNum (this.minCust,this.maxCust));
+      this.custperHour.push (Math.floor (randomNum (this.minCust,this.maxCust)* this.avgcookieSale));
     }
   },
-  gethourlySale: function (){
-    for (let i =0; i <hours.length; i++){
-      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-    }
-  },
+  // gethourlySale: function (){
+  //   for (let i =0; i <hours.length; i++){
+  //     this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
+  //   }
+  // },
 
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
-      this.dailyTotal += this.hourlySales[i];
+      this.dailyTotal += this.custperHour[i];
     }
   },
   render: function (){
     this.getCustomers ();
-    this.gethourlySale ();
+    // this.gethourlySale ();
     this.getcookiesTotal ();
 
     let articleElm = document.createElement ('article');
@@ -205,7 +205,7 @@ let Tokyo = {
 
     for (let i =0; i <hours.length;i++){
       let li = document.createElement ("li");
-      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      li.textContent = `${hours [i]}; ${this.custperHour[i]}cookies`;
       ulElem.appendChild (li);
     }
 
@@ -230,24 +230,24 @@ let Lima = {
 
   getCustomers: function (){
     for (let i =0; i < hours.length; i++){
-      this.custperHour.push (randomNum (this.minCust,this.maxCust));
+      this.custperHour.push (Math.floor (randomNum (this.minCust,this.maxCust)* this.avgcookieSale));
     }
   },
-  gethourlySale: function (){
-    for (let i =0; i <hours.length; i++){
-      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-    }
-  },
+  // gethourlySale: function (){
+  //   for (let i =0; i <hours.length; i++){
+  //     this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
+  //   }
+  // },
 
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
-      this.dailyTotal += this.hourlySales[i];
+      this.dailyTotal += this.custperHour[i];
     }
   },
   render: function (){
     this.getCustomers ();
-    this.gethourlySale ();
+    // this.gethourlySale ();
     this.getcookiesTotal ();
 
     let articleElm = document.createElement ('article');
@@ -264,7 +264,7 @@ let Lima = {
 
     for (let i =0; i <hours.length;i++){
       let li = document.createElement ("li");
-      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      li.textContent = `${hours [i]}; ${this.custperHour[i]}cookies`;
       ulElem.appendChild (li);
     }
 
@@ -290,23 +290,23 @@ let Dubai= {
 
   getCustomers: function (){
     for (let i =0; i < hours.length; i++){
-      this.custperHour.push (randomNum (this.minCust,this.maxCust));
+      this.custperHour.push (Math.floor (randomNum (this.minCust,this.maxCust)* this.avgcookieSale));
     }
   },
-  gethourlySale: function (){
-    for (let i =0; i <hours.length; i++){
-      this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
-    }
-  },
+  // gethourlySale: function (){
+  //   for (let i =0; i <hours.length; i++){
+  //     this.hourlySales.push (Math.floor (this.custperHour [i],this.maxCust));
+  //   }
+  // },
 
   getcookiesTotal: function (){
     for (let i = 0; i < hours.length;i++){
-      this.dailyTotal += this.hourlySales[i];
+      this.dailyTotal += this.custperHour[i];
     }
   },
   render: function (){
     this.getCustomers ();
-    this.gethourlySale ();
+    // this.gethourlySale ();
     this.getcookiesTotal ();
 
     let articleElm = document.createElement ('article');
@@ -323,7 +323,7 @@ let Dubai= {
 
     for (let i =0; i <hours.length;i++){
       let li = document.createElement ("li");
-      li.textContent = `${hours [i]}; ${this.hourlySales[i]}cookies`;
+      li.textContent = `${hours [i]}; ${this.custperHour[i]}cookies`;
       ulElem.appendChild (li);
     }
 
