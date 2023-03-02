@@ -10,12 +10,40 @@
     </head>
     <body>
         <header>
+            <h1>Salmon Cookies</h1>
+            <nav>
+                <img src="assets/salmon.png" alt="Pat's Salmon Logo">
+                <a href="index.html">Home Page</a>
+            </nav>
         </header>
+
         <main>
-            <h2>Tracking Sales Data</h2>
         </main>
         <section id="salesdata"></section>
             <table id="table"></table>
+        <form id=" Cookies Form">
+            <fieldset>
+                <legend>Enter New Location</legend>
+      
+                <label>Location Name
+                  <input type="text" pattern="[a-zA-Z][a-zA-Z0-9\s]*" name="location" required>
+                </label>
+      
+                <label>Minimum Customers
+                  <input type="number" name="mincust" required>
+                </label>
+      
+                <label>Maximum Customers
+                  <input type="number" name="maxcust" required>
+                </label>
+      
+                <label>Average Cookies Per Customer
+                  <input type="number" step=".1" name="avgcookies" required>
+                </label>
+      
+                <button type="submit">Submit</button>
+              </fieldset>
+            </form>
     </section> 
     <script src="app.js"> </script>
     </body>
