@@ -7,6 +7,7 @@ body {
 display: flex;
 border: 4px solid #e88c13;
 justify-content: space-between;
+background-color:white;
 }
 
 .nav-logo img {
@@ -15,7 +16,7 @@ justify-content: space-between;
 
 .nav-logo h1 {
     font-size: 75px;
-    color:midnightblue;
+    color:#6b500d;
     margin-top: 30px;
     font-weight: bold;
 }
@@ -79,7 +80,7 @@ tfoot {
    }
 
    #second {
-    background-color: #f3ce71;
+    background-color: #ddcd8e; 
     text-align: center;
     border: 4px solid #9aa2b5;
     width: 1200px;
@@ -97,6 +98,7 @@ tfoot {
     margin: 10px;
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight: 800;
+    font-size: 30px;
   }
   
   #second h3 {
