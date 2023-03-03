@@ -90,20 +90,20 @@ tfoot {
     padding: 1rem;
     box-sizing: border-box;
     margin-left: 190px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Assistant', sans-serif;
   }
 
   #second h2, #second p{
     padding: 5px;
     margin: 10px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 800;
     font-size: 30px;
   }
   
   #second h3 {
     padding-top: 10px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:'Assistant', sans-serif;
     font-weight: 600;
     font-size: larger;
     color:midnightblue;
@@ -142,7 +142,8 @@ display: flex;
     background-color: #e1bc96;
     font-family: Arial, Helvetica, sans-serif;
     font-weight:bold;
-    color:darkblue;
+    color:navy;
+    text-align: center;
 }
 .div2 {
     width: 700px;
@@ -154,12 +155,26 @@ display: flex;
     background-color: #e1bc96;
     font-family: Arial, Helvetica, sans-serif;
     font-weight:bold;
+    text-align: center;
     align-items:end;
-    color:darkblue;
-  
+    color:navy;  
   }
-
-
+.div1 img {
+    border-radius:20%;
+}
+.div1 h2{
+    font-family: 'Assistant', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
+.div2 h2 {
+    font-family: 'Assistant', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
+.div2 img {
+    border-radius: 30%;
+}
   #fifth{
     width: 700px;
     border: 4px solid #9aa2b5;
@@ -169,13 +184,19 @@ display: flex;
     margin: 1rem;
     background-color: #e1bc96;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight:600;
-    color:darkblue;
+    font-weight: 400px;
+    color:navy;
   }
   #fifth img {
     width: 440px;
     height: 450px;
     height:auto;
+    border-radius: 10%;
+  }
+  #fifth h2 {
+    font-family: 'Assistant', sans-serif;;
+    font-size: 20px;
+    font-weight: bold;
   }
  
   .footer {
