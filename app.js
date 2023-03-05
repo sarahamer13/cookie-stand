@@ -42,9 +42,6 @@ let hours = ['6am', '7am', '8am', '9pm', '10am', '11am', '12pm', '1pm', '2pm', '
 let htmlSection = document.getElementById('salesdata');
 console.log(htmlSection);
 
-if (htmlSection !== null) {
-  console.log(htmlSection);
-}
 // Table //
 
 let table = document.getElementById('table');
@@ -118,42 +115,46 @@ allStores.prototype.locationRender = function () {
     trElem.appendChild(tdElemSale);
     this.dailyTotal += this.HourlySales[i];
   }
-
   let dailyTotalTD = document.createElement('td');
   dailyTotalTD.textContent = this.dailyTotal;
   trElem.appendChild(dailyTotalTD);
   table.appendChild(trElem);
 };
 
-allStores.prototype.render = function() {
+allStores.prototype.render = function(){
   this.locationRender();
-  footerRender();
 };
 
 let cookiesForm = document.getElementById ('cookiesForm');
 cookiesForm.addEventListener('submit',function(event){
-  event.preventDefault ();
-  console.log (event);
+  event.preventDefault();
+
 
   let {location, minCust, maxCust, avgCookies} = event.target;
   console.log (location.value,minCust.value, maxCust.value,avgCookies.value);
   let inputStore = new allStores(location.value,parseInt(minCust.value),parseInt(maxCust.value),parseInt(avgCookies.value));
-  console.log (allLocations);
+
+  allLocations.push(inputStore);
   inputStore.render();
+  event.target.reset();
+
+  // Clear the form inputs by setting their values to an empty string
+  location.value = '';
+  minCust.value = '';
+  maxCust.value = '';
+  avgCookies.value = '';
   let table = document.querySelector ('table');
   table.deleteTFoot ();
-
 });
-
 
 allLocations [0].render ();
 allLocations [1].render ();
 allLocations[2].render ();
 allLocations [3].render ();
 allLocations [4].render ();
-
-headerRender();
 footerRender();
+headerRender();
+
 
 
 
