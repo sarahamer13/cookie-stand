@@ -128,7 +128,7 @@ allStores.prototype.render = function(){
 let cookiesForm = document.getElementById ('cookiesForm');
 cookiesForm.addEventListener('submit',function(event){
   event.preventDefault();
- 
+
 
   let {location, minCust, maxCust, avgCookies} = event.target;
   console.log (location.value,minCust.value, maxCust.value,avgCookies.value);
