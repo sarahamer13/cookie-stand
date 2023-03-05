@@ -8,6 +8,7 @@ function randomNum(min, max) {
 // CONSTRUCTOR FUNCTIONS //
 
 let dailyStoreTotal = [];
+let allLocations = [];
 
 function allStores(name, minCust, maxCust, avgCookie) {
   this.name = name;
@@ -17,7 +18,7 @@ function allStores(name, minCust, maxCust, avgCookie) {
   this.dailyTotal = 0;
   this.custperHour = [];
   this.HourlySales = [];
-  dailyStoreTotal.push(this);
+  allLocations.push(this);
 }
 
 allStores.prototype.getCustmers = function () {
@@ -33,13 +34,6 @@ allStores.prototype.avgCookiePerHour = function () {
   }
 };
 
-// object literals // 
-let Seattle = new allStores('Seattle', 23, 65, 6.3);
-let Paris = new allStores('Paris', 20, 38, 2.3);
-let Tokyo = new allStores('Tokyo', 3, 24, 1.2);
-let Lima = new allStores('Lima', 2, 16, 4.6);
-let Dubai = new allStores('Dubai', 11, 38, 3.7);
-let StoreLocations = [Seattle, Paris, Tokyo, Lima, Dubai];
 
 
 // Globals //
@@ -48,7 +42,9 @@ let hours = ['6am', '7am', '8am', '9pm', '10am', '11am', '12pm', '1pm', '2pm', '
 let htmlSection = document.getElementById('salesdata');
 console.log(htmlSection);
 
-
+if (htmlSection !== null) {
+  console.log(htmlSection);
+}
 // Table //
 
 let table = document.getElementById('table');
@@ -72,38 +68,40 @@ function headerRender() {
   trElem.appendChild(thElem);
   tbody.appendChild(trElem);
 }
-// Create a footer row for hourly totals
+new allStores('Seattle', 23, 65, 6.3);
+new allStores('Paris', 20, 38, 2.3);
+new allStores('Tokyo', 3, 24, 1.2);
+new allStores('Lima', 2, 16, 4.6);
+new allStores('Dubai', 11, 38, 3.7);
 
 
 function footerRender() {
-
   let tfootElem = document.createElement('tfoot');
-  let tfootrow = document.createElement ('tr');
-  
-  tfootElem.appendChild (tfootrow);
-  let footerTitleElem = document.createElement('td');
+  let tfootrow = document.createElement('tr');
+
+  let footerTitleElem = document.createElement('th');
   footerTitleElem.textContent = 'Totals';
   tfootrow.appendChild(footerTitleElem);
 
   let grandTotal = 0;
   for (let i = 0; i < hours.length; i++) {
     let hourlySum = 0;
-    for (let j = 0; j < StoreLocations.length; j++) {
-      hourlySum += StoreLocations[j].HourlySales[i];
-      grandTotal+= StoreLocations[j].HourlySales[i];
-      console.log (hourlySum);
+    for (let j = 0; j < allLocations.length; j++) {
+      hourlySum += allLocations[j].HourlySales[i];
     }
-    let thfooter = document.createElement ('td');
+    grandTotal += hourlySum;
+
+    let thfooter = document.createElement('td');
     thfooter.textContent = hourlySum;
     tfootrow.appendChild(thfooter);
-    console.log (StoreLocations [i]);
   }
-  let thTotal= document.createElement ('td');
-  thTotal.textContent = grandTotal;
-  tfootrow.appendChild (thTotal);
-  table.appendChild (tfootElem);
-  console.log (StoreLocations);
 
+  let thTotal = document.createElement('td');
+  thTotal.textContent = grandTotal;
+  tfootrow.appendChild(thTotal);
+
+  tfootElem.appendChild(tfootrow);
+  table.appendChild(tfootElem);
 }
 
 
@@ -127,11 +125,36 @@ allStores.prototype.locationRender = function () {
   table.appendChild(trElem);
 };
 
+allStores.prototype.render = function() {
+  this.locationRender();
+  footerRender();
+};
 
-Seattle.locationRender();
-Paris.locationRender();
-Tokyo.locationRender();
-Lima.locationRender();
-Dubai.locationRender();
+let cookiesForm = document.getElementById ('cookiesForm');
+cookiesForm.addEventListener('submit',function(event){
+  event.preventDefault ();
+  console.log (event);
+
+  let {location, minCust, maxCust, avgCookies} = event.target;
+  console.log (location.value,minCust.value, maxCust.value,avgCookies.value);
+  let inputStore = new allStores(location.value,parseInt(minCust.value),parseInt(maxCust.value),parseInt(avgCookies.value));
+  console.log (allLocations);
+  inputStore.render();
+  let table = document.querySelector ('table');
+  table.deleteTFoot ();
+
+});
+
+
+allLocations [0].render ();
+allLocations [1].render ();
+allLocations[2].render ();
+allLocations [3].render ();
+allLocations [4].render ();
+
 headerRender();
 footerRender();
+
+
+
+
