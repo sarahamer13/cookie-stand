@@ -39,8 +39,8 @@ allStores.prototype.avgCookiePerHour = function () {
 // Globals //
 
 let hours = ['6am', '7am', '8am', '9pm', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-let htmlSection = document.getElementById('salesdata');
-console.log(htmlSection);
+// let htmlSection = document.getElementById('salesdata');
+// // console.log(htmlSection);
 
 // Table //
 
@@ -71,9 +71,9 @@ new allStores('Tokyo', 3, 24, 1.2);
 new allStores('Lima', 2, 16, 4.6);
 new allStores('Dubai', 11, 38, 3.7);
 
-
+let tfootElem = document.createElement('tfoot');
 function footerRender() {
-  let tfootElem = document.createElement('tfoot');
+
   let tfootrow = document.createElement('tr');
 
   let footerTitleElem = document.createElement('th');
@@ -126,26 +126,32 @@ allStores.prototype.render = function(){
 };
 
 let cookiesForm = document.getElementById ('cookiesForm');
-cookiesForm.addEventListener('submit',function(event){
-  event.preventDefault();
 
+function handleform (event){
+  event.preventDefault ();
+  const loc = event.target.location.value;
+  const min = parseInt (event.target.mincust.value);
+  const max =  parseInt (event.target.maxcust.value);
+  const avg =  parseFloat (event.target.avgCookies.value);
 
-  let {location, minCust, maxCust, avgCookies} = event.target;
-  console.log (location.value,minCust.value, maxCust.value,avgCookies.value);
-  let inputStore = new allStores(location.value,parseInt(minCust.value),parseInt(maxCust.value),parseInt(avgCookies.value));
-
+  let inputStore = new allStores (loc,min,max,avg);
+  console.log (inputStore);
   allLocations.push(inputStore);
   inputStore.render();
   event.target.reset();
 
-  // Clear the form inputs by setting their values to an empty string
-  location.value = '';
-  minCust.value = '';
-  maxCust.value = '';
-  avgCookies.value = '';
-  let table = document.querySelector ('table');
-  table.deleteTFoot ();
-});
+  // Clear the form inputs by setting their values to an null string
+  event.target.location.value = null;
+  event.target.mincust.value = null;
+  event.target.maxcust.value = null;
+  event.target.avgCookies.value = null;
+  tfootElem.innerHTML = '';
+
+  footerRender();
+}
+
+cookiesForm.addEventListener ('submit', handleform);
+
 
 allLocations [0].render ();
 allLocations [1].render ();
