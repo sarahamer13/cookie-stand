@@ -71,35 +71,6 @@ new allStores('Tokyo', 3, 24, 1.2);
 new allStores('Lima', 2, 16, 4.6);
 new allStores('Dubai', 11, 38, 3.7);
 
-let tfootElem = document.createElement('tfoot');
-function footerRender() {
-
-  let tfootrow = document.createElement('tr');
-
-  let footerTitleElem = document.createElement('th');
-  footerTitleElem.textContent = 'Totals';
-  tfootrow.appendChild(footerTitleElem);
-
-  let grandTotal = 0;
-  for (let i = 0; i < hours.length; i++) {
-    let hourlySum = 0;
-    for (let j = 0; j < allLocations.length; j++) {
-      hourlySum += allLocations[j].HourlySales[i];
-    }
-    grandTotal += hourlySum;
-
-    let thfooter = document.createElement('td');
-    thfooter.textContent = hourlySum;
-    tfootrow.appendChild(thfooter);
-  }
-
-  let thTotal = document.createElement('td');
-  thTotal.textContent = grandTotal;
-  tfootrow.appendChild(thTotal);
-
-  tfootElem.appendChild(tfootrow);
-  table.appendChild(tfootElem);
-}
 
 
 allStores.prototype.locationRender = function () {
@@ -121,6 +92,38 @@ allStores.prototype.locationRender = function () {
   table.appendChild(trElem);
 };
 
+
+let tfootElem = document.createElement('tfoot');
+
+function footerRender() {
+  let tfootrow = document.createElement('tr');
+
+  let footerTitleElem = document.createElement('th');
+  footerTitleElem.textContent = 'Totals';
+  tfootrow.appendChild(footerTitleElem);
+
+  let grandTotal = 0;
+  for (let i = 0; i < hours.length; i++) {
+    let hourlySum = 0;
+    for (let j = 0; j < allLocations.length; j++) {
+      hourlySum += allLocations[j].HourlySales[i];
+      console.log (hourlySum);
+    }
+    grandTotal += hourlySum;
+    // console.log (grandTotal);
+    let thfooter = document.createElement('td');
+    thfooter.textContent = hourlySum;
+    tfootrow.appendChild(thfooter);
+  }
+
+  let thTotal = document.createElement('td');
+  thTotal.textContent = grandTotal;
+  tfootrow.appendChild(thTotal);
+  tfootElem.appendChild(tfootrow);
+  table.appendChild(tfootElem);
+}
+
+
 allStores.prototype.render = function(){
   this.locationRender();
 };
@@ -132,22 +135,21 @@ function handleform (event){
   const loc = event.target.location.value;
   const min = parseInt (event.target.mincust.value);
   const max =  parseInt (event.target.maxcust.value);
-  const avg =  parseFloat (event.target.avgCookies.value);
+  const avg =  parseInt (event.target.avgCookies.value);
 
   let inputStore = new allStores (loc,min,max,avg);
-  console.log (inputStore);
-  allLocations.push(inputStore);
   inputStore.render();
   event.target.reset();
+  tfootElem.innerHTML = '';
 
+  console.log ('inside handleform');
+  footerRender();
   // Clear the form inputs by setting their values to an null string
   event.target.location.value = null;
   event.target.mincust.value = null;
   event.target.maxcust.value = null;
   event.target.avgCookies.value = null;
-  tfootElem.innerHTML = '';
 
-  footerRender();
 }
 
 cookiesForm.addEventListener ('submit', handleform);
